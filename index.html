@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>hw-3</title>
+</head>
+<body class="popup_opened">
+    <div class="popup opened">
+        <div class="modal">
+            <input type="text" name="" id="userAge">
+            <button id="pushAge">вот</button>
+            <div id="dialog"></div>
+            <img src="img/sova.png" alt="sova" class="img">
+            <img src="img/dialog.png" alt="" class="img_dialog">
+        </div>
+    </div>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, dolorem a sequi deleniti quibusdam eos illo rerum aperiam fugit, unde aliquid suscipit rem, porro cupiditate? Tempore quis dolore cumque atque tenetur minima, accusamus quam expedita veritatis suscipit incidunt libero sapiente harum dignissimos aliquam distinctio nam! Doloremque explicabo assumenda, iusto voluptates saepe ullam vero? Tenetur, reiciendis voluptas similique corporis praesentium accusantium consectetur aperiam non molestiae saepe, suscipit facere enim sequi eum aliquam tempore illo dignissimos! Quasi ex autem accusantium, iure nobis voluptate laboriosam numquam quae? Dolore harum deserunt numquam quos magnam minus? Eum velit quasi, ea, in ipsam laudantium vitae voluptatibus et praesentium, id mollitia at. Quas excepturi qui, error dignissimos minus at, neque est placeat aperiam illo ab voluptatem quae reiciendis aut. Consectetur quod maxime necessitatibus nisi possimus fuga quidem magni nemo facilis pariatur ullam voluptatibus, accusamus maiores delectus, itaque, sint inventore non! Placeat provident aut omnis mollitia iure eaque nulla saepe officiis laboriosam asperiores doloremque at, qui accusamus. Iure, molestiae incidunt. Quia, voluptatum maiores aliquid fugit veniam cumque adipisci hic. Rem possimus temporibus magni adipisci, dignissimos tenetur, in expedita, fugiat error facere laudantium repellat ex. Asperiores consequuntur eum iusto rem aut quidem blanditiis voluptas, voluptatum nam, sunt in earum laborum ducimus? Vel architecto numquam ipsum officiis ut porro excepturi molestias impedit, alias exercitationem, quasi saepe consectetur ullam enim expedita at! Odio, perspiciatis expedita. Omnis nihil at magni dignissimos hic voluptatum quos modi soluta perspiciatis, quam quidem nostrum? Sunt excepturi recusandae dignissimos delectus dolores, eligendi illum quo reiciendis ut pariatur odit, reprehenderit laudantium temporibus! Architecto, minus porro ut fugiat ad reprehenderit autem corrupti alias ex expedita enim iure mollitia, ratione perferendis, praesentium sapiente officiis deserunt harum illo. Maiores porro voluptatem praesentium obcaecati nulla, ullam cum non minima ratione cumque veniam amet similique error? Fugiat minus facilis impedit, laboriosam odit nesciunt consequuntur? Debitis nihil, autem ratione eos placeat, sequi, qui possimus facilis iure illum quas accusantium distinctio ipsum ipsa maiores. Repudiandae temporibus pariatur eveniet dolor, nobis architecto repellat cupiditate recusandae ut tempore deleniti fuga nemo? Adipisci quae tempora aperiam quam quasi sequi recusandae nesciunt modi quos eaque neque quod blanditiis, ipsam obcaecati eligendi ratione id nobis assumenda a magni. Reprehenderit eaque explicabo rem iste neque, asperiores praesentium quo eos architecto adipisci, natus, officiis qui corporis nostrum culpa? Veniam, aliquam cum a maiores facere placeat, ratione reprehenderit veritatis illo, iusto provident minus sit quidem perspiciatis itaque neque voluptatem tempore! Qui, exercitationem, laborum sint deserunt autem suscipit doloribus aliquam laboriosam quaerat delectus nobis non praesentium provident accusantium, tenetur illum magnam incidunt maiores quisquam? Officia modi adipisci non. Error cum nesciunt consectetur autem vel odio doloremque obcaecati officia sed cupiditate esse officiis, molestias maiores reprehenderit quasi harum. Consectetur repellat quaerat quam iste voluptatum, minima voluptatibus totam explicabo consequatur nulla soluta est magni dolor! Nihil, recusandae dicta ex reprehenderit deserunt earum! Cumque nam quo ea fugiat, quod itaque ipsam earum at quae debitis tempore rem cum soluta enim molestias aliquam suscipit aperiam labore adipisci autem praesentium fuga tenetur. Mollitia tempora ducimus dolor reiciendis rerum harum?
+
+    <script>
+/* переменные */
+        let userAge;
+        let userAgeNumeral;
+        let dialog = document.querySelector('#dialog');
+
+/* пишем текст в модальное окно */
+        setTimeout(writeDialog, 2000, 'Привет!')
+        setTimeout(writeDialog, 4000, 'Сколько тебе лет?')
+
+/* запускаем проверку */
+        document.querySelector('#pushAge').onclick = () => {
+            userAgeNumeral = parseInt(document.querySelector('#userAge').value); //получаем тип number без лишнего текста.
+
+            if (isNaN(userAgeNumeral)) {
+                setTimeout(writeDialog, 1000, 'Так не пойдёт ^_^ <br> Напиши числом пожалуйста.');
+                userAge = null;
+            } else {
+                fullYears(userAgeNumeral);
+                writeDialog(userAge + '?');
+                setTimeout(writeDialog, 1000, userAge + '? ' + 'Хммм..');
+            }
+            /* проверяем старше ли пользователь 18лет */
+            if (userAge) {
+                if ( userAgeNumeral < 18) {
+                    setTimeout(writeDialog, 1000, 'Рановато ещё..');
+                    setTimeout(writeDialog, 3000, 'Заходи через ' + fullYears(18 - userAgeNumeral) + ' :)');
+                } else if (userAgeNumeral >= 100) {
+                    setTimeout(writeDialog, 2000, 'Что-то подозрительно.. <br> Ну ладно, проходи.');
+                    setTimeout(closePopup, 3000);
+                } else {
+                    setTimeout(writeDialog, 2000, 'Проходи, дружок.');
+                    setTimeout(closePopup, 3000);
+                }
+            }
+        }
+        
+/* функции */
+        /* пишет текст в модальное окно */
+        function writeDialog (someText) {
+            dialog.innerHTML = someText;
+        }
+
+        /* проверяет цифру и добавляет правильно окончание */
+        function fullYears (age) {
+            if (age == 11 || age == 12 || age == 13  || age == 14) {
+                userAge = age + ' лет';
+            } else {
+                switch (age % 10) {
+                    case 1: {
+                        userAge = age + ' год';
+                        break;
+                    }
+                    case 2:
+                    case 3:
+                    case 4: {
+                        userAge = age + ' года';
+                        break;
+                    }
+                    default: {
+                        userAge = age + ' лет';
+                        break;
+                    }
+                }
+            }
+            return userAge;
+        }
+        /* закрывает открытый попап */
+        function closePopup (){
+            document.querySelector('.popup').classList.remove('opened');
+            document.querySelector('body').classList.remove('popup_opened');
+        }
+    </script>
+</body>
+</html>

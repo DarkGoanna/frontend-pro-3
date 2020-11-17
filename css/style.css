@@ -1,0 +1,81 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 25px;
+}
+
+body.popup_opened {
+    overflow: hidden;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+}
+
+.popup.opened {
+    display: block;
+}
+
+
+.modal {
+    width: 400px;
+    height: 300px;
+    padding: 15px;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid purple;
+    border-radius: 5px;
+}
+
+#dialog {
+    width: 200px;
+    min-height: 50px;
+    position: absolute;
+    top: -45%;
+    left: 190px;
+    z-index: 2;
+    text-align: center;
+}
+
+.img {
+    height: 300px;
+    position: absolute;
+    top: -50%;
+    left: -15%;
+}
+
+.img_dialog {
+    width: 250px;
+    position: absolute;
+    top: -70%;
+    left: 40%;
+}
+
+input {
+    position: absolute;
+    bottom: 40px;
+    left: 10%;
+    width: 80%;
+    padding: 20px;
+    font-size: 40px;
+}
+
+button {
+    position: absolute;
+    bottom: 150px;
+    right: 10%;
+    font-size: 30px;
+}
