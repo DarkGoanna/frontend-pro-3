@@ -30,7 +30,10 @@
 
 /* запускаем проверку */
         document.querySelector('#pushAge').onclick = () => {
-            userAgeNumeral = parseInt(document.querySelector('#userAge').value); //получаем тип number без лишнего текста.
+            let input = document.querySelector('#userAge'); 
+
+            userAgeNumeral = parseInt(input.value); //получаем тип number без лишнего текста.
+            input.value = ''; //очистили инпут.
 
             if (isNaN(userAgeNumeral)) {
                 setTimeout(writeDialog, 1000, 'Так не пойдёт ^_^ <br> Напиши числом пожалуйста.');
@@ -42,8 +45,10 @@
             }
             /* проверяем старше ли пользователь 18лет */
             if (userAge) {
-                if ( userAgeNumeral < 18) {
-                    setTimeout(writeDialog, 1000, 'Рановато ещё..');
+                if (userAgeNumeral == 0) {
+                    setTimeout(writeDialog, 2000, 'Я думаю, что ты обманываешь меня');
+                } else if ( userAgeNumeral < 18) {
+                    setTimeout(writeDialog,2000, 'Рановато ещё..');
                     setTimeout(writeDialog, 3000, 'Заходи через ' + fullYears(18 - userAgeNumeral) + ' :)');
                 } else if (userAgeNumeral >= 100) {
                     setTimeout(writeDialog, 2000, 'Что-то подозрительно.. <br> Ну ладно, проходи.');
@@ -63,7 +68,10 @@
 
         /* проверяет цифру и добавляет правильно окончание */
         function fullYears (age) {
-            if (age == 11 || age == 12 || age == 13  || age == 14) {
+            if (age % 100 == 11 
+             || age % 100 == 12 
+             || age % 100 == 13  
+             || age % 100 == 14) {
                 userAge = age + ' лет';
             } else {
                 switch (age % 10) {
